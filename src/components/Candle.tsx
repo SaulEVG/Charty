@@ -5,6 +5,7 @@ let normalizedDataPrice = {
   highNormalized: 0,
   bodyNormalized: 0,
 };
+const $viewHeightValue = 80;
 
 const Candle: React.FC<APIDataHistorylPrice> = ({
   date,
@@ -13,36 +14,38 @@ const Candle: React.FC<APIDataHistorylPrice> = ({
   high,
   close,
   volume,
+  position,
+  maxAxisY,
 }) => {
-  const edgeBodyCandle = (value: number): number => {
-    if (value >= close) {
-      return open;
-    } else return close;
-  };
+  const edgeBodyCandleTop = open >= close ? open : close;
+  const edgeBodyCandleBottom = open >= close ? close : open;
 
   normalizedDataPrice = {
-    bodyNormalized: Math.abs(open - close) * 10,
-    highNormalized: Math.abs(edgeBodyCandle(open) - high) * 10,
-    lowNormalized: Math.abs(edgeBodyCandle(close) - low) * 10,
+    bodyNormalized: (Math.abs(open - close) * $viewHeightValue) / maxAxisY,
+    highNormalized:
+      (Math.abs(edgeBodyCandleTop - high) * $viewHeightValue) / maxAxisY,
+    lowNormalized:
+      (Math.abs(edgeBodyCandleBottom - low) * $viewHeightValue) / maxAxisY,
   };
 
   return (
     <>
-      <div className="candle">
+      <div className="candle" style={{ translate: `1px ${position}vh` }}>
         <div
           className="high"
-          style={{ height: normalizedDataPrice.highNormalized }}
+          style={{ height: `${normalizedDataPrice.highNormalized}vh` }}
         ></div>
         <div
           className="body"
           style={{
             minHeight: 1,
-            height: normalizedDataPrice.bodyNormalized,
+            height: `${normalizedDataPrice.bodyNormalized}vh`,
+            backgroundColor: open > close ? "red" : "green",
           }}
         ></div>
         <div
           className="low"
-          style={{ height: normalizedDataPrice.lowNormalized }}
+          style={{ height: `${normalizedDataPrice.lowNormalized}vh` }}
         ></div>
       </div>
     </>

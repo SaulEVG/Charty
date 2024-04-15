@@ -15,6 +15,8 @@ interface APIDataHistorylPrice {
   high: number;
   close: number;
   volume: number;
+  position?: number;
+  maxAxisY?: number;
 }
 
 interface ArrayAPIDataHistoryPrice extends Array<APIDataHistorylPrice> {}

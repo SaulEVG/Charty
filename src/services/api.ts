@@ -14,7 +14,6 @@ export const fecthDataAPISearch = async (
   }
 };
 
-//historical-chart/5min/AAPL?from=2023-08-10&to=2023-09-10&apikey=wELEeofibe752jPpoPu9x1VUUgIQ62mc
 export const fecthDataAPIHistoricalPrice = async (
   timeFrame: string,
   symbol: string,
@@ -24,7 +23,7 @@ export const fecthDataAPIHistoricalPrice = async (
   try {
     const historicalPrice = await fetch(
       END_POINT +
-        `historical-chart/${timeFrame}/${symbol}?from=${fromData}-10&to=${toData}${api_key}`
+        `historical-chart/${timeFrame}/${symbol}?from=${fromData}&to=${toData}${api_key}`
     ).then((res) => res.json());
     return historicalPrice;
   } catch (error) {

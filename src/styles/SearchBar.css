@@ -3,8 +3,11 @@ li {
 }
 
 .search-bar-container {
+  display: flex;
+  flex-direction: row;
   position: relative;
   margin-bottom: 20px;
+  justify-content: center;
 }
 
 .search-bar-list {
@@ -14,7 +17,6 @@ li {
 }
 
 .search-bar-item {
-  
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;

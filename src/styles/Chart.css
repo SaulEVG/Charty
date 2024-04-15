@@ -1,4 +1,13 @@
 .chart {
   display: flex;
   flex-direction: row;
+  gap: 2px;
+  border: solid 2px dimgray;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+  height: fit-content;
+  min-height: 80vh;
+  max-width: fit-content;
+  min-width: 90vw;
+  max-width: 90vw;
+  width: fit-content;
 }
