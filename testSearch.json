@@ -1,0 +1,72 @@
+[
+  {
+    "symbol": "AAL",
+    "name": "American Airlines Group Inc.",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Select",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAXJ",
+    "name": "iShares MSCI All Country Asia ex Japan ETF",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Market",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAWW",
+    "name": "Atlas Air Worldwide Holdings, Inc.",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Select",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AATC",
+    "name": "Autoscope Technologies Corporation",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Capital Market",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAPU",
+    "name": "Direxion Daily AAPL Bull 1.5X Shares",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Market",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAPL",
+    "name": "Apple Inc.",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Select",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAPD",
+    "name": "Direxion Daily AAPL Bear 1X Shares",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Market",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAPB",
+    "name": "GraniteShares ETF Trust - GraniteShares 2x Long Tilray Daily ETF",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Market",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAON",
+    "name": "AAON, Inc.",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Select",
+    "exchangeShortName": "NASDAQ"
+  },
+  {
+    "symbol": "AAOI",
+    "name": "Applied Optoelectronics, Inc.",
+    "currency": "USD",
+    "stockExchange": "NASDAQ Global Market",
+    "exchangeShortName": "NASDAQ"
+  }
+]

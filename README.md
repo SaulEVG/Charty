@@ -1,0 +1,1 @@
+A lightweight SPA built with React and TypeScript, displaying historical price data in candlestick chart format for various assets including stocks, indices, funds, cryptocurrencies, etc.
