@@ -14,7 +14,7 @@ export const fecthDataAPISearch = async (
   }
 };
 
-//historical-chart/5min/AAPL?from=2023-08-10&to=2023-09-10&apikey=wELEeofibe752jPpoPu9x1VUUgIQ62mc
+
 export const fecthDataAPIHistoricalPrice = async (
   timeFrame: string,
   symbol: string,
