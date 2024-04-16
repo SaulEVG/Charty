@@ -15,10 +15,10 @@ export const fecthDataAPISearch = async (
 };
 
 export const fecthDataAPIHistoricalPrice = async (
-  timeFrame: string,
-  symbol: string,
-  fromData: string,
-  toData: string
+  timeFrame: string = "1hour",
+  symbol: string = "PRAA",
+  fromData: string = "2024-04-01",
+  toData: string = "2024-04-16"
 ): Promise<ArrayAPIDataHistoryPrice | undefined> => {
   try {
     const historicalPrice = await fetch(

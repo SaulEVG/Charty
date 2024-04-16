@@ -3,22 +3,32 @@ li {
 }
 
 .search-bar-container {
+  position: relative;
   display: flex;
   flex-direction: row;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 5vh;
   justify-content: center;
 }
 
 .search-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+  margin: 0;
+  padding: 0;
   position: absolute;
+  top: 4vh;
   width: 200px;
   border-radius: 4px;
+  background-color: rgb(38, 38, 38);
 }
 
 .search-bar-item {
-  padding: 8px;
-  font-size: 16px;
+  position: relative;
+  padding: 1vh;
+  font-size: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  z-index: 99;
 }

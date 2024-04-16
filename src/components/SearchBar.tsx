@@ -1,32 +1,53 @@
 import React, { useState } from "react";
-import { fecthDataAPISearch } from "../services/api";
+import {
+  fecthDataAPIHistoricalPrice,
+  fecthDataAPISearch,
+} from "../services/api";
 import "../styles/SearchBar.css";
+import { useUpdateHistoricalPrice } from "../context/HistoricalPriceContext";
+
+let timeoutId: number;
 
 const SearchBar: React.FC = () => {
   const [option, setOptions] = useState<ArrayAPIDataSearch>([]);
+  const [dataAPISearched, setDataAPISearched] = useState<string>("");
+  const [userInput, setUserImput] = useState("");
+  const setHistoricalPrice = useUpdateHistoricalPrice();
 
-  const handlerSearch = async () => {
-    const userInput: string | undefined = (
-      document.querySelector("input") as HTMLInputElement
-    )?.value;
-    const dataSearched: ArrayAPIDataSearch | undefined =
-      await fecthDataAPISearch(userInput);
-    if (dataSearched) {
-      setOptions(dataSearched);
-    } else {
-      setOptions([]);
-    }
+  const handlerKeyUp = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const userImput = e.currentTarget.value.trim();
+    setUserImput(userImput);
+
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(async () => {
+      const handlerSearch = async (userImput: string) => {
+        const dataSearched: ArrayAPIDataSearch | undefined =
+          await fecthDataAPISearch(userImput);
+
+        if (dataSearched && dataSearched.length > 0) {
+          const dataSearchedFirstSymbol = dataSearched[0].symbol;
+          setDataAPISearched(dataSearchedFirstSymbol);
+          setOptions(dataSearched);
+
+          const historicalPriceSymbol = await fecthDataAPIHistoricalPrice(
+            "1hour",
+            dataAPISearched
+          );
+          if (historicalPriceSymbol) {
+            setHistoricalPrice(historicalPriceSymbol);
+            console.log(dataAPISearched, userImput);
+          }
+        } else {
+          setOptions([]);
+        }
+      };
+      handlerSearch(userInput);
+    }, 2000);
   };
 
   return (
     <div className="search-bar-container">
-      <input
-        className="search-bar-input"
-        type="text"
-        name="symbol"
-        onKeyUp={handlerSearch}
-        placeholder="VALE3"
-      />
       <div className="search-bar-list-container">
         <ul className="search-bar-list">
           {option.map((option, index) => (
@@ -37,6 +58,13 @@ const SearchBar: React.FC = () => {
           ))}
         </ul>
       </div>
+      <input
+        className="search-bar-input"
+        type="search"
+        name="symbol"
+        onInput={handlerKeyUp}
+        placeholder="VALE3"
+      />
       <input type="button" value="Search" />
     </div>
   );

@@ -9,7 +9,7 @@ interface APIDataSearch {
 interface ArrayAPIDataSearch extends Array<APIDataSearch> {}
 
 interface APIDataHistorylPrice {
-  data: string;
+  date: string;
   open: number;
   low: number;
   high: number;

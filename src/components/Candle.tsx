@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/Candle.css";
 
 let normalizedDataPrice = {
@@ -17,9 +18,18 @@ const Candle: React.FC<APIDataHistorylPrice> = ({
   position,
   maxAxisY,
 }) => {
+  const [isHovering, setIsHovering] = useState(false);
+
   const edgeBodyCandleTop = open >= close ? open : close;
   const edgeBodyCandleBottom = open >= close ? close : open;
 
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
   normalizedDataPrice = {
     bodyNormalized: (Math.abs(open - close) * $viewHeightValue) / maxAxisY,
     highNormalized:
@@ -30,7 +40,14 @@ const Candle: React.FC<APIDataHistorylPrice> = ({
 
   return (
     <>
-      <div className="candle" style={{ translate: `1px ${position}vh` }}>
+      <div
+        className="candle"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          translate: `0px ${position}vh`,
+        }}
+      >
         <div
           className="high"
           style={{ height: `${normalizedDataPrice.highNormalized}vh` }}
@@ -48,6 +65,15 @@ const Candle: React.FC<APIDataHistorylPrice> = ({
           style={{ height: `${normalizedDataPrice.lowNormalized}vh` }}
         ></div>
       </div>
+      {isHovering && (
+        <>
+          <div className="data">
+            O: {open} C: {close} H: {high} L: {low}
+          </div>
+          <div className="date">{date}</div>
+          <div className="axisY"></div>
+        </>
+      )}
     </>
   );
 };
