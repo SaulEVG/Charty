@@ -1,5 +1,5 @@
 .candle {
-  width: 10px;
+  width: 1vw;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -7,21 +7,21 @@
 }
 
 .high {
-  width: 0.05rem;
+  width: 0.05vw;
   position: relative;
   background-color: gray;
 }
 
 .body {
   position: relative;
-  width: 100%;
+  width: 0.5vw;
   background-color: blanchedalmond;
-  border-radius: 0.4px;
+  border-radius: 0.05vw;
   border: none;
 }
 
 .low {
-  width: 0.05rem;
+  width: 0.05vw;
   position: relative;
   background-color: gray;
 }
@@ -29,14 +29,16 @@
 .data {
   font-size: small;
   position: absolute;
-  aspect-ratio: 1/1;
 }
+
 .date {
   position: absolute;
+  display: flex;
+  justify-content: space-around;
+  top: 92.5vh;
   font-size: small;
-  top: 1rem;
-  background-color: darkblue;
-}
-.axisY {
-  position: absolute;
+  width: 12vw;
+  background-color: rgb(68, 68, 68);
+  border-radius: 3px;
+  padding: 0px 1px;
 }

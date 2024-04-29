@@ -14,11 +14,19 @@ export const fecthDataAPISearch = async (
   }
 };
 
+const getCurrentDate = () => {
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Sumamos 1 porque los meses van de 0 a 11
+  const day = String(currentDate.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 export const fecthDataAPIHistoricalPrice = async (
   timeFrame: string = "1hour",
   symbol: string = "PRAA",
   fromData: string = "2024-04-01",
-  toData: string = "2024-04-16"
+  toData: string = getCurrentDate()
 ): Promise<ArrayAPIDataHistoryPrice | undefined> => {
   try {
     const historicalPrice = await fetch(

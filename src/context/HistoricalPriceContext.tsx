@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { ReactNode, createContext, useContext, useState } from "react";
 
 // Definir el contexto
 const HistoricalPriceContext = createContext<ArrayAPIDataHistoryPrice>([]);
@@ -6,8 +6,12 @@ const HistoricalPriceUpdateContext = createContext<
   React.Dispatch<React.SetStateAction<ArrayAPIDataHistoryPrice>>
 >(() => {});
 
+interface Props {
+  children: ReactNode;
+}
+
 // Proveedor del contexto
-export const HistoricalPriceProvider: React.FC = ({ children }) => {
+export const HistoricalPriceProvider: React.FC<Props> = ({ children }) => {
   const [historicalPrice, setHistoricalPrice] =
     useState<ArrayAPIDataHistoryPrice>([]);
 

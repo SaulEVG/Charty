@@ -1,11 +1,6 @@
 import { useState } from "react";
 import "../styles/Candle.css";
 
-let normalizedDataPrice = {
-  lowNormalized: 0,
-  highNormalized: 0,
-  bodyNormalized: 0,
-};
 const $viewHeightValue = 80;
 
 const Candle: React.FC<APIDataHistorylPrice> = ({
@@ -17,6 +12,7 @@ const Candle: React.FC<APIDataHistorylPrice> = ({
   volume,
   position,
   maxAxisY,
+  mousePositionX,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -30,13 +26,13 @@ const Candle: React.FC<APIDataHistorylPrice> = ({
   const handleMouseLeave = () => {
     setIsHovering(false);
   };
-  normalizedDataPrice = {
-    bodyNormalized: (Math.abs(open - close) * $viewHeightValue) / maxAxisY,
-    highNormalized:
-      (Math.abs(edgeBodyCandleTop - high) * $viewHeightValue) / maxAxisY,
-    lowNormalized:
-      (Math.abs(edgeBodyCandleBottom - low) * $viewHeightValue) / maxAxisY,
-  };
+
+  const highNormalized =
+    ((high - edgeBodyCandleTop) * $viewHeightValue) / maxAxisY;
+  const bodyNormalized =
+    ((edgeBodyCandleTop - edgeBodyCandleBottom) * $viewHeightValue) / maxAxisY;
+  const lowNormalized =
+    ((edgeBodyCandleBottom - low) * $viewHeightValue) / maxAxisY;
 
   return (
     <>
@@ -44,34 +40,30 @@ const Candle: React.FC<APIDataHistorylPrice> = ({
         className="candle"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        style={{
-          translate: `0px ${position}vh`,
-        }}
+        style={{ translate: `0px ${position}vh` }}
       >
-        <div
-          className="high"
-          style={{ height: `${normalizedDataPrice.highNormalized}vh` }}
-        ></div>
+        <div className="high" style={{ height: `${highNormalized}vh` }}></div>
         <div
           className="body"
           style={{
-            minHeight: 1,
-            height: `${normalizedDataPrice.bodyNormalized}vh`,
+            minHeight: "0.01vh",
+            height: `${bodyNormalized}vh`,
             backgroundColor: open > close ? "red" : "green",
           }}
         ></div>
-        <div
-          className="low"
-          style={{ height: `${normalizedDataPrice.lowNormalized}vh` }}
-        ></div>
+        <div className="low" style={{ height: `${lowNormalized}vh` }}></div>
       </div>
       {isHovering && (
         <>
           <div className="data">
             O: {open} C: {close} H: {high} L: {low}
           </div>
-          <div className="date">{date}</div>
-          <div className="axisY"></div>
+          <div
+            className="date"
+            style={{ translate: `${mousePositionX - 6}vw` }}
+          >
+            {date}
+          </div>
         </>
       )}
     </>

@@ -6,12 +6,8 @@ import { HistoricalPriceProvider } from "./context/HistoricalPriceContext";
 function App() {
   return (
     <HistoricalPriceProvider>
-      {
-        <>
-          <SearchBar />
-          <Chart />
-        </>
-      }
+      <SearchBar />
+      <Chart />
     </HistoricalPriceProvider>
   );
 }
